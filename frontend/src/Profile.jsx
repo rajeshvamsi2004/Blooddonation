@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody,
   MDBCardImage, MDBTypography, MDBIcon
@@ -6,6 +6,30 @@ import {
 
 export default function Profile() {
   const e = JSON.parse(localStorage.getItem('donor'));
+  const [profileImage, setProfileImage] = useState(null);
+
+  useEffect(() => {
+    const storedImage = localStorage.getItem('profileImage');
+    if (storedImage) {
+      setProfileImage(storedImage);
+    }
+  }, []);
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const base64String = reader.result;
+      localStorage.setItem('profileImage', base64String);
+      setProfileImage(base64String);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   if (!e) {
     return (
       <MDBContainer className="py-5 text-center">
@@ -24,9 +48,23 @@ export default function Profile() {
               <MDBRow className="g-0">
                 <MDBCol id='profileimage' md="4" className="gradient-custom text-center text-white"
                   style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
-                  <MDBCardImage id='profileimage' src=""
-                    alt="Avatar" className="my-5" style={{ width: '80px' }} fluid />
-                  <MDBIcon far icon="edit mb-5" />
+                  <MDBCardImage
+                    id='profile-image-display'
+                    src={profileImage || ""}
+                    alt="Avatar"
+                    className="my-5"
+                    style={{ width: '80px', borderRadius: '50%' }}
+                    fluid />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    id="fileInput"
+                    onChange={handleImageUpload}
+                  />
+                  <label htmlFor="fileInput">
+                    <MDBIcon far icon="edit mb-5" style={{ cursor: 'pointer' }} />
+                  </label>
                 </MDBCol>
                 <MDBCol md="8">
                   <MDBCardBody className="p-4">

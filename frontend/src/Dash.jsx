@@ -1,122 +1,95 @@
-import React, { useState } from 'react';
+import React,{useState} from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import './StatusBox.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import Slide from './Slide';
-
-import {
-  FaUser,
-  FaHospital,
-  FaUsers,
-  FaHourglassHalf,
-  FaCheckCircle,
-  FaTimesCircle,
-  FaBan
-} from 'react-icons/fa';
-
 import { Link, useNavigate } from 'react-router-dom';
+
+// Import your components
+import Banner from './Banner';
 import Bar from './Bar';
-import Bloodrepresent from './Bloodrepresent';
+
+// Import your icons
+import { FaUser, FaHospital, FaUsers, FaHourglassHalf, FaCheckCircle, FaTimesCircle, FaBan } from 'react-icons/fa';
+
+// Import your stylesheet
+import './dashboard.css';
+
+// Reusable component for the navigation links
+const SidebarNav = ({ onLinkClick, onLogout }) => {
+  // A reusabldashe Nav.Link component to reduce repetition
+  const NavLink = ({ to, icon, children }) => (
+    <Nav.Link as={Link} to={to} onClick={onLinkClick} className="sidebar-link">
+      {icon}
+      <span>{children}</span>
+    </Nav.Link>
+  );
+
+  return (
+    <Nav className="flex-column sidebar-nav">
+      <NavLink to="/profile" icon={<FaUser />}>Profile</NavLink>
+      <NavLink to="/donors" icon={<FaUsers />}>Donors</NavLink>
+      <NavLink to="/pendings" icon={<FaHourglassHalf />}>Pendings</NavLink>
+      <NavLink to="/accepted" icon={<FaCheckCircle />}>Accepted</NavLink>
+      <NavLink to="/rejected" icon={<FaTimesCircle />}>Rejected</NavLink>
+      <NavLink to="/bloodbanks" icon={<FaHospital />}>Blood Banks</NavLink>
+      {/* Logout is an action, so it's a button/link that triggers a function */}
+      <Nav.Link onClick={onLogout} className="sidebar-link">
+        <FaBan />
+        <span>Logout</span>
+      </Nav.Link>
+    </Nav>
+  );
+};
 
 
 const Dash = () => {
   const navigate = useNavigate();
-  const [side, setSide] = useState(false);
-  const handleShow = () => setSide(true);
-  const handleClose = () => setSide(false);
-  const Logout = () => {
-    localStorage.removeItem('Email');
-    localStorage.removeItem('Blood');
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const handleShow = () => setShowOffcanvas(true);
+  const handleClose = () => setShowOffcanvas(false);
+
+  const handleLogout = () => {
+    localStorage.clear();
     navigate('/login');
-    handleClose(); 
+    // Ensure the offcanvas closes if logout is clicked from there
+    if (showOffcanvas) {
+      handleClose();
+    }
   };
 
   return (
-    <div>
-      <Bar />
-      <FontAwesomeIcon
-        style={{
-          cursor: 'pointer',
-          display: 'flex',
-          top: '12px',
-          margin: '5px',
-          position: 'absolute'
-        }}
-        onClick={handleShow}
-        icon={faBars}
-      />
-      <Offcanvas
-        id="canvas"
-        show={side}
-        onHide={handleClose}
-        placement="start"
-        backdrop={false}
-        scroll={true}
-      >
-        <Offcanvas.Header closeButton></Offcanvas.Header>
-        <div id="navbar">
-          <Nav className="flex-column">
-            <Nav.Link onClick={handleClose}>
-              <span className="nav-item-content">
-                <FaUser className="icons" size={11} />
-                <Link style={{ textDecoration: 'none' }} to="/profile">
-                  <span>Profile</span>
-                </Link>
-              </span>
-            </Nav.Link>
+    <div className='dashboard-layout'>
+      {/* --- Desktop Sidebar (Visible on large screens) --- */}
+      <nav className="desktop-sidebar d-none d-lg-block">
+        <h3 className="sidebar-title">Menu</h3>
+        <SidebarNav onLogout={handleLogout} />
+      </nav>
 
-            <Nav.Link onClick={handleClose}>
-              <span className="nav-item-content">
-                <FaUsers className="icons" size={11} />
-                <span>Donors</span>
-              </span>
-            </Nav.Link>
-
-            <Nav.Link onClick={handleClose}>
-              <span className="nav-item-content">
-                <FaHourglassHalf className="icons" size={11} />
-                <Link style={{ textDecoration: 'none' }} to="/pendings">
-                  <span>Pendings</span>
-                </Link>
-              </span>
-            </Nav.Link>
-
-            <Nav.Link onClick={handleClose}>
-              <span className="nav-item-content">
-                <FaCheckCircle className="icons" size={11} />
-                <Link style={{textDecoration: 'none'}} to='/accepted'><span>Accepted</span></Link>
-              </span>
-            </Nav.Link>
-
-            <Nav.Link onClick={handleClose}>
-              <span className="nav-item-content">
-                <FaTimesCircle className="icons" size={11} />
-               <Link to='/rejected' style={{textDecoration: 'none'}}> <span>Rejected</span></Link>
-              </span>
-            </Nav.Link>
-
-            <Nav.Link onClick={handleClose}>
-              <span className="nav-item-content">
-                <FaHospital className="icons" size={11}/>
-                <span>BloodBanks</span>
-              </span>
-            </Nav.Link>
-
-            <Nav.Link onClick={Logout}>
-              <span className="nav-item-content">
-                <FaBan className="icons" size={11} />
-                <span>Logout</span>
-              </span>
-            </Nav.Link>
-          </Nav>
-        </div>
+      {/* --- Mobile Offcanvas Sidebar --- */}
+      <Offcanvas show={showOffcanvas} onHide={handleClose} placement="start" className="mobile-sidebar">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Menu</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <SidebarNav onLinkClick={handleClose} onLogout={handleLogout} />
+        </Offcanvas.Body>
       </Offcanvas>
-      <Slide/>
-      <h1 style={{fontFamily: 'serif', marginLeft: '-240px', marginTop: '10px'}}>Donation Group Comaptibility Table</h1> <br />
-      <Bloodrepresent/>
+
+      {/* --- Main Content Area (includes top bar and banner) --- */}
+      <main className='dashboard-content'>
+        {/* Hamburger Menu Button - Placed in the content area for better alignment */}
+        <FontAwesomeIcon
+            className="menu-toggle-btn d-lg-none"
+            onClick={handleShow}
+            icon={faBars}
+        />
+        <Bar />
+        <Banner />
+        {/* Your other dashboard content would go here */}
+      </main>
     </div>
   );
 };
+
 export default Dash;

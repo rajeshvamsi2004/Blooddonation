@@ -1,0 +1,321 @@
+/* General Layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Make it fill the viewport height */
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent body scroll */
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 10; /* Ensure header is above map */
+}
+
+.main-content {
+    display: flex;
+    flex-grow: 1; /* Allows main content to take remaining space */
+}
+
+/* Search Panel (Sidebar) */
+.search-panel {
+    width: 380px; /* Adjust width as needed */
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+    overflow-y: auto; /* Enable scrolling for search results */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    flex-shrink: 0; /* Prevent panel from shrinking */
+}
+
+.search-form h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 10px;
+    padding-left: 35px; /* Space for icon */
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.form-group .input-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+.blood-group-select {
+    padding-left: 10px !important; /* Override input-icon padding for select */
+}
+
+.search-button,
+.location-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+}
+
+.search-button:hover,
+.location-button:hover {
+    background-color: #0056b3;
+}
+
+.search-button:disabled,
+.location-button:disabled {
+    background-color: #a0c9ed;
+    cursor: not-allowed;
+}
+
+.divider-text {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.divider-text::before,
+.divider-text::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.divider-text::before {
+    left: 0;
+}
+
+.divider-text::after {
+    right: 0;
+}
+
+/* Feedback (Loading/Error) */
+.feedback-container {
+    text-align: center;
+    padding: 10px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.feedback-container.error {
+    color: #dc3545; /* Red for errors */
+    font-weight: bold;
+}
+
+/* Loader spinner */
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff; /* Blue spinner */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Results List */
+.results-container {
+    margin-top: 25px;
+}
+
+.results-container h3 {
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.result-item {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.result-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.result-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+
+.result-item p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+
+.distance-info {
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 5px;
+}
+
+.icon-small {
+    margin-right: 5px;
+    font-size: 0.9em; /* Adjust icon size within list items */
+}
+
+/* Type-specific styling for list items */
+.bloodbank-item {
+    border-left: 5px solid #dc3545; /* Red border for blood banks */
+}
+.hospital-item {
+    border-left: 5px solid #28a745; /* Green border for hospitals */
+}
+
+/* Map Panel */
+.map-panel {
+    flex-grow: 1; /* Allows map to fill remaining horizontal space */
+    position: relative; /* Essential for Mapbox to render correctly inside */
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Mapbox Marker Customization */
+/* General marker style (invisible, just a container for content) */
+.mapboxgl-marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%; /* Make it round */
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    font-size: 1.5em; /* Icon size inside marker */
+    width: 35px; /* Size of the marker circle */
+    height: 35px;
+    border: 2px solid white; /* White border */
+}
+
+/* Specific styles for blood bank markers */
+.bloodbank-marker {
+    background-color: #dc3545; /* Red */
+}
+.bloodbank-marker::before { /* Use ::before for the icon */
+    content: '🩸'; /* Blood drop icon */
+}
+
+/* Specific styles for hospital markers */
+.hospital-marker {
+    background-color: #28a745; /* Green */
+}
+.hospital-marker::before { /* Use ::before for the icon */
+    content: '🏥'; /* Hospital icon */
+}
+
+/* Highlighted marker style when hovered */
+.highlighted-marker {
+    transform: scale(1.2); /* Make it bigger */
+    z-index: 100; /* Bring to front */
+    box-shadow: 0 0 15px rgba(0,0,0,0.6); /* More prominent shadow */
+    animation: pulse 1s infinite alternate; /* Optional: subtle pulse effect */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1.2); }
+    100% { transform: scale(1.3); }
+}
+
+/* Mapbox Popups (Optional Styling) */
+.mapboxgl-popup-content {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+}
+.mapboxgl-popup-content h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+}
+.mapboxgl-popup-content p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #555;
+}
+.mapboxgl-popup-tip {
+    border-top-color: #fff !important; /* Match popup background */
+}
+/* User Location Marker */
+.user-location-marker {
+    background-color: #007bff; /* Blue */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    color: white;
+    font-weight: bold;
+    /* Optional: A subtle animation */
+    animation: pulse-user 1.5s infinite ease-out;
+}
+
+@keyframes pulse-user {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+/* Other existing styles remain the same */

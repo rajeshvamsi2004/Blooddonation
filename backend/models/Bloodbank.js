@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
-  Name: String,
   State: String,
   City: String,
   Contact: String,

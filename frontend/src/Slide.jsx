@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
 import blood1 from './pics/Blood1.jpeg';
 import blood2 from './pics/Bloodimage.jpeg';
-import './StatusBox.css'
+
 
 const Slide = () => {
   return (

@@ -1,0 +1,153 @@
+/* Import a Google Font for better typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* --- Main Container and Wrapper --- */
+.auth-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  font-family: 'Inter', sans-serif;
+  padding: 1rem;
+}
+
+.auth-form-wrapper {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+}
+
+/* --- Form Header --- */
+.form-header {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.form-header .sub-heading {
+  color: #6c757d;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-header .main-heading {
+  color: #1d2129;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* --- Input Fields --- */
+.input-group {
+  margin-bottom: 1.25rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #495057;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input::placeholder {
+  color: #adb5bd;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+}
+
+/* --- Form Options (Remember me & Forgot Password) --- */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.form-options label {
+  display: flex;
+  align-items: center;
+  color: #495057;
+  cursor: pointer;
+}
+
+.form-options input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #4285f4;
+}
+
+.form-options a, .auth-footer a {
+  color: #4285f4;
+  text-decoration: none;
+  font-weight: 500;
+  transition: text-decoration 0.2s;
+}
+
+.form-options a:hover, .auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* --- Buttons --- */
+.auth-btn {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.auth-btn:hover {
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background-color: #4285f4;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.btn-google {
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #ced4da;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-google img {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- Form Footer --- */
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 480px) {
+  .auth-form-wrapper {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-header .main-heading {
+    font-size: 1.8rem;
+  }
+}

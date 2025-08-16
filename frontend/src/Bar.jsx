@@ -1,23 +1,27 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './App.css';
 
 const Bar = () => {
   return (
-    <>
-      <Navbar style={{backgroundColor: 'red'}} data-bs-theme="dark">
-        <Container id='barcontainer'>
-          <Nav  id='barcontainer2' className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Link style={{textDecoration: 'none'}} to='/donorlogin'><Nav.Link href="#donor-login">Donor Login</Nav.Link></Link>
-            <Link style={{textDecoration: 'none'}} to='/request'><Nav.Link href="#blood-requests">Blood Requests</Nav.Link></Link>
-            <Nav.Link href="#register">Blood Camps</Nav.Link>
-            <Nav.Link href="#contact">Contact Us</Nav.Link>
+    <Navbar expand="lg" className="dashboard-navbar">
+      <Container fluid>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mx-auto gap-2 gap-lg-4">
+            <Nav.Link as={Link} to="/box">Home</Nav.Link>
+            <Nav.Link as={Link} to="/eligibility">Eligibility Check</Nav.Link>
+            <Nav.Link as={Link} to="/donorlogin">Become a Donor</Nav.Link>
+            <Nav.Link as={Link} to="/request">Blood Requests</Nav.Link>
+            <Nav.Link as={Link} to="/bloodcamps">Blood Camps</Nav.Link>
+            <Nav.Link as={Link} to="/bloodbanks">Blood banks</Nav.Link>
+            <Nav.Link as={Link} to="/donation">Blood Search</Nav.Link>
+            <Nav.Link as={Link} to="/contact">Contact Us</Nav.Link>
           </Nav>
-        </Container>
-      </Navbar>
-    </>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

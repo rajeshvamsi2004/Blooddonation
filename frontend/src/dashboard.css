@@ -1,0 +1,118 @@
+/* --- Global & Basic Styling --- */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f4f7f6; /* A light background for the content area */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+}
+
+/* --- Main Dashboard Layout --- */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* --- Desktop Sidebar (Visible on screens > 992px) --- */
+.desktop-sidebar {
+  width: 260px; /* Fixed width for the sidebar */
+  flex-shrink: 0; /* Prevents the sidebar from shrinking */
+  background-color: #ffffff; /* A clean white background */
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+  padding: 20px;
+  height: 100vh; /* Full viewport height */
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  z-index: 100; /* Ensures it's above other elements if needed */
+  overflow-y: auto; /* Allow scrolling if content is long */
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2rem;
+  padding-left: 10px;
+}
+
+/* --- Main Content Area --- */
+.dashboard-content {
+  flex-grow: 1; /* Allows the content to take up the remaining space */
+  overflow-y: auto; /* The content area will scroll, not the whole page */
+  padding: 20px;
+  /* Key for desktop: push content to the right to not overlap with the fixed sidebar */
+  margin-left: 260px;
+}
+
+/* --- Shared Sidebar Link Styling --- */
+.sidebar-nav .sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  color: #555;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-nav .sidebar-link:hover, .sidebar-nav .sidebar-link.active {
+  background-color: #eef2ff; /* A gentle hover effect */
+  color: #4338ca;
+}
+
+.sidebar-nav .sidebar-link svg {
+  margin-right: 15px; /* Space between icon and text */
+  font-size: 1.1rem;
+  width: 20px; /* Ensures icons are aligned */
+}
+
+/* --- Mobile Menu Button --- */
+.menu-toggle-btn {
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  margin-bottom: 15px; /* Space below the hamburger icon */
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  z-index: 1021; /* Should be higher than offcanvas backdrop */
+}
+
+/* --- Banner & Carousel --- */
+.dashboard-banner {
+  border-radius: 12px;
+  overflow: hidden; /* Ensures the images conform to the border-radius */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Space from the Bar component */
+}
+
+.carousel-image {
+  max-height: 55vh; /* Prevents the carousel from being too tall on large screens */
+  object-fit: cover; /* Ensures images fill the container without distortion */
+  width: 100%;
+}
+
+/* --- Responsive Adjustments (for screens < 992px) --- */
+@media (max-width: 991.98px) {
+  /* Hide the desktop sidebar using Bootstrap's d-lg-block class,
+     but we also need to remove the margin from the content area */
+  .dashboard-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .menu-toggle-btn {
+    top: 20px;
+    left: 15px;
+  }
+
+  /* Adjust carousel height for smaller screens */
+  .carousel-image {
+    max-height: 40vh;
+  }
+}

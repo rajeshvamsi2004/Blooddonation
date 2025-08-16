@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'r87921749@gmail.com',
-    pass: 'rdju lnsy hhka ucci' 
+    pass: 'vxdvzjhqlxcbbzvj' 
   }
 });
 const PORT = process.env.PORT || 5000;
@@ -140,7 +140,7 @@ app.post('/blood-request', express.json(), async (req, res) => {
       service: 'gmail',
       auth: {
         user: 'r87921749@gmail.com',
-        pass: 'rdju lnsy hhka ucci'
+        pass: 'vxdvzjhqlxcbbzvj'
       }
     });
 

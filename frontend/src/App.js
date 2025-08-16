@@ -14,6 +14,13 @@ import Review from './Review';
 import Accepted from './Accepted';
 import Rejected from './Rejected';
 import Slide from './Slide'
+import Photo from './Photo';
+import AddBloodCamp from './AddBloodCamp';
+import Bloodcampsearch from './Bloodcampsearch'
+import Location from './Location';
+import Donation from './Donation';
+import BloodCampPage from './BloodCampPage';
+import Eligibility from './Eligibility';
 function App() {
   return (
     <div className="App">
@@ -32,7 +39,13 @@ function App() {
          <Route path='/profile' element={<Profile/>}/>
          <Route path='/pendings' element={<Review/>}/>
          <Route path='/accepted' element={<Accepted/>}/>
-         <Route path='/rejected' element={<Rejected/>}/>
+         <Route path='/rejected' element={<Rejected type="rejected" />}/>
+         <Route path='/change' element={<Photo/>}/>
+         <Route path='/addbloodcamp' element={<AddBloodCamp/>}/>
+         <Route path='bloodcamps' element={<BloodCampPage/>}/>
+         <Route path='/bloodbanks' element={<Location/>}/>
+         <Route path='/donation' element={<Donation/>}/>
+         <Route path='/eligibility' element={<Eligibility/>}/>
        </Routes>
       </BrowserRouter>
 

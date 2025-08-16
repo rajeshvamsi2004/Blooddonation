@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Government General Hospital",
+    "state": "Andhra Pradesh",
+    "district": "Guntur",
+    "contact": "0863-2222001",
+    "bloodGroupsAvailable": ["A+", "B+", "O+", "AB+"]
+  },
+  {
+    "name": "King George Hospital",
+    "state": "Andhra Pradesh",
+    "district": "Visakhapatnam",
+    "contact": "0891-2564933",
+    "bloodGroupsAvailable": ["A+", "O+", "B-", "AB-"]
+  },
+  {
+    "name": "RIMS Kadapa",
+    "state": "Andhra Pradesh",
+    "district": "Kadapa",
+    "contact": "08562-245555",
+    "bloodGroupsAvailable": ["A-", "B+", "O+", "AB+"]
+  },
+  {
+    "name": "SVRRGG Hospital",
+    "state": "Andhra Pradesh",
+    "district": "Tirupati",
+    "contact": "0877-2287561",
+    "bloodGroupsAvailable": ["A+", "B+", "O-", "AB+"]
+  }
+]

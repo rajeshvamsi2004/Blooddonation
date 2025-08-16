@@ -1,0 +1,103 @@
+/* src/styles.css */
+
+/* General Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #d63384, #dc3545, #fd7e14);
+  color: white;
+  padding: 4rem 1rem;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-section h1 {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+/* Tab Navigation */
+.nav-pills .nav-link {
+  color: #dc3545;
+  font-weight: 600;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Camp Card Styling */
+.camp-card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.camp-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.camp-card .card-header {
+  background-color: #dc3545;
+  color: white;
+  font-weight: 600;
+  border-radius: 15px 15px 0 0;
+  padding: 0.75rem 1.25rem;
+}
+
+.camp-card .list-group-item {
+  border: none;
+  padding: 0.75rem 1.25rem;
+}
+
+.camp-card i {
+  margin-right: 10px;
+  color: #d63384;
+}
+
+/* Form Styling */
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-container h3 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #dc3545;
+}
+
+/* Helper Classes */
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border-color: #dc3545 transparent transparent transparent !important;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

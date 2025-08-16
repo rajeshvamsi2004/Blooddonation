@@ -11,6 +11,6 @@ const schema = new mongoose.Schema({
   Password: {
     type: String,
     required: true
-  }
+  },
 },{collection: 'login'})
 module.exports = mongoose.model("reg",schema)

@@ -1,5 +1,4 @@
 import Table from 'react-bootstrap/Table';
-import './Main.css'
 function Bloodrepresent() {
   return (
     <Table id='table' striped bordered hover>

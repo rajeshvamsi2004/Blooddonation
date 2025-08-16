@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const RequestStatus = () => {
+const Rejected = ({ type }) => {
   const [statusMessage, setStatusMessage] = useState('Loading...');
   const [error, setError] = useState(null);
 
@@ -14,7 +14,7 @@ const RequestStatus = () => {
 
     const fetchStatus = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/rejected/${requestId}`);
+        const res = await fetch(`http://localhost:4000/${type}/${requestId}`);
         const data = await res.json();
 
         if (res.ok) {
@@ -28,7 +28,7 @@ const RequestStatus = () => {
     };
 
     fetchStatus();
-  }, []);
+  }, [type]);
 
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
@@ -38,4 +38,4 @@ const RequestStatus = () => {
   );
 };
 
-export default RequestStatus;
+export default Rejected;
